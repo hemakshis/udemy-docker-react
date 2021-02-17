@@ -17,6 +17,7 @@ function App() {
         >
           Learn React
         </a>
+        <p><code>&copy; Hemakshi Sachdev</code></p>
       </header>
     </div>
   );
