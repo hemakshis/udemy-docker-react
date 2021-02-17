@@ -7,4 +7,4 @@ before_install:
   - docker build -f Dockerfile.dev -t hemakshis/udemy-docker-react .
 
 script:
-  - docker run --name test-udemy-docker-react-app hemakshis/udemy-docker-react npm run test -- --coverage
+  - docker run -e CI=true hemakshis/udemy-docker-react npm run test -- --coverage
