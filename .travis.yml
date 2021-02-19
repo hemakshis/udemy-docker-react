@@ -1,0 +1,22 @@
+sudo: required # super user permissions needed to run any docker commands
+language: generic
+services:
+  - docker
+
+before_install:
+  - docker build -f Dockerfile.dev -t hemakshis/udemy-docker-react .
+
+script:
+  - docker run -e CI=true hemakshis/udemy-docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "udemy-docker-react"
+  env: "Udemydockerreact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-684037825765"
+  bucket_path: "udemy-docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
